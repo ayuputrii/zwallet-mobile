@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "184439866671",
+    "project_id": "zwalletmobile",
+    "storage_bucket": "zwalletmobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:184439866671:android:acb632166cb1331aac8dda",
+        "android_client_info": {
+          "package_name": "com.zwalletbi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "184439866671-6ukenp2gups60ofk38scnj335ctprt9g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIuR4G0UUZmfvSZApndt8PbkL5E255zh8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "184439866671-6ukenp2gups60ofk38scnj335ctprt9g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

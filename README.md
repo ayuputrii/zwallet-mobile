@@ -19,7 +19,7 @@ ke Google Playstore ataupun iOS Appstore. UI/UX nya sendiri hampir mirip dengan 
 
 ### Release:
 
-[Application Zwallet Webi Version Website](https://bit.ly/zwalletbi)
+[Application Zwallet Webi Version Website](https://bit.ly/zwallett)
 
 ### Description:
 

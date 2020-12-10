@@ -8,9 +8,11 @@ import {signup} from '../../Redux/Action/Register';
 const Register = (props) => {
   const inputEmail = React.useRef();
   const inputPassword = React.useRef();
+  const inputPin = React.useRef();
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [pin, setPin] = React.useState('');
   const [hidePassword, setHidePassword] = React.useState(true);
   const dispatch = useDispatch();
 
@@ -24,8 +26,14 @@ const Register = (props) => {
       alert('Please Input Email!');
       return false;
     }
+
     if (!password) {
       alert('Please Input Password!');
+      return false;
+    }
+
+    if (!password) {
+      alert('Please Input Pin');
       return false;
     }
 
@@ -33,6 +41,7 @@ const Register = (props) => {
       email: email,
       password: password,
       name: name,
+      pin: pin,
     };
 
     dispatch(signup(data));
@@ -133,7 +142,7 @@ const Register = (props) => {
                   name={password}
                   label="Password"
                   onChangeText={(text) => setPassword(text)}
-                  onSubmitEditing={() => onRegister()}
+                  onSubmitEditing={() => inputPin.current.focus()}
                   secureTextEntry={hidePassword}
                   returnKeyType="send"
                 />
@@ -141,9 +150,37 @@ const Register = (props) => {
                   <IconButton
                     onPress={() => setHidePassword(!hidePassword)}
                     color="#444"
-                    icon={hidePassword ? 'eye-outline' : 'eye-off-outline'}
+                    icon={hidePassword ? 'eye-off-outline' : 'eye-outline'}
                   />
                 </View>
+              </View>
+              <View style={styles.inputItem}>
+                <View
+                  style={{
+                    position: 'absolute',
+                    zIndex: 2,
+                    top: 3,
+                    left: -0.1,
+                  }}>
+                  <IconButton color="#444" icon="lock-outline" />
+                </View>
+                <TextInput
+                  style={{
+                    paddingLeft: 35,
+                    fontFamily: 'Nunito-Regular',
+                    backgroundColor: 'white',
+                  }}
+                  placeholder="Enter your Pin"
+                  autoCapitalize={'none'}
+                  ref={inputPin}
+                  value={pin}
+                  name={pin}
+                  keyboardType="number-pad"
+                  label="Pin"
+                  onChangeText={(text) => setPin(text)}
+                  onSubmitEditing={() => onRegister()}
+                  returnKeyType="next"
+                />
               </View>
             </View>
           </View>

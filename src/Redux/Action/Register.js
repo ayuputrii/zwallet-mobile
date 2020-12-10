@@ -101,7 +101,7 @@ export const AuthResetError = (message) => {
 export const RegisterPassword = (data) => async (dispatch) => {
   dispatch(AuthResetRequest());
   try {
-    const res = await Axios.patch(`${URI}/auth/resetpassword`, data.data);
+    const res = await Axios.patch(`${URI}/auth/resetpassword`, data);
     ToastAndroid.show('Reset Success', ToastAndroid.LONG);
     dispatch(AuthResetSuccess(res.data.message));
   } catch (error) {

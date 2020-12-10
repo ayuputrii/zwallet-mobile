@@ -9,6 +9,7 @@ import Register from './Pages/Register';
 import SplashScreen from 'react-native-splash-screen';
 import Home from './Pages/Home';
 import Profile from './Pages/Profile';
+import ManagePhone from './Pages/ManagePhone';
 import SearchReceiver from './Pages/SearchReceiver';
 import Topup from './Pages/Topup';
 import Amount from './Pages/Amount';
@@ -16,7 +17,6 @@ import Confirmation from './Pages/Confirmation';
 import PinConfirmation from './Pages/PinConfirmation';
 import StatusConfirm from './Pages/StatusConfirm';
 import PersonalContact from './Pages/PersonalContact';
-import ManagePhone from './Pages/ManagePhone';
 import AddPhone from './Pages/AddPhone';
 import ChangePassword from './Pages/ChangePassword';
 import ChangePin from './Pages/ChangePin';
@@ -32,7 +32,7 @@ const Stack = createStackNavigator();
 
 const MainNavigator = () => {
   const dispatch = useDispatch();
-  const {token, isLogin, isUser} = useSelector((state) => state.auth);
+  const {token, isLogin, isUser} = useSelector((s) => s.auth);
   const [loading, setLoading] = useState(true);
   const [initialRoute, setInitialRoute] = useState('Home');
 
@@ -95,6 +95,16 @@ const MainNavigator = () => {
             options={{headerShown: false}}
           />
           <Stack.Screen
+            name="DetailTransaction"
+            component={DetailTransaction}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Notification"
+            component={Notification}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
             name="SearchReceiver"
             component={SearchReceiver}
             options={{headerShown: false}}
@@ -109,7 +119,6 @@ const MainNavigator = () => {
             component={Confirmation}
             options={{headerShown: false}}
           />
-
           <Stack.Screen
             name="PinConfirmation"
             component={PinConfirmation}
@@ -120,18 +129,6 @@ const MainNavigator = () => {
             component={StatusConfirm}
             options={{headerShown: false}}
           />
-          <Stack.Screen
-            name="Notification"
-            component={Notification}
-            options={{headerShown: false}}
-          />
-
-          <Stack.Screen
-            name="DetailTransaction"
-            component={DetailTransaction}
-            options={{headerShown: false}}
-          />
-
           <Stack.Screen
             name="Topup"
             component={Topup}
@@ -189,7 +186,7 @@ const MainNavigator = () => {
             name="RegSuccess"
             component={RegSuccess}
             options={{headerShown: false}}
-          />s
+          />
           <Stack.Screen
             name="ResetPassword"
             component={ResetPassword}

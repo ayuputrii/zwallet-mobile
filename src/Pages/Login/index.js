@@ -160,7 +160,7 @@ const Login = (props) => {
                   <IconButton
                     onPress={() => setHidePassword(!hidePassword)}
                     color="#444"
-                    icon={hidePassword ? 'eye-outline' : 'eye-off-outline'}
+                    icon={hidePassword ? 'eye-off-outline' : 'eye-outline'}
                   />
                 </View>
               </View>

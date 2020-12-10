@@ -42,7 +42,7 @@ The Zwallet Webi application is used as an online payment between one user and o
 ### Screenshoot Application
 
 ✨ Registration
-[!photo](https://drive.google.com/file/d/17HH-lrz0k_RoRwcxlCjY8u0J5FaWrG_M/view?usp=drivesdk)
+![WhatsApp Image 2020-12-10 at 17 47 52](https://user-images.githubusercontent.com/46896802/101765527-04274800-3b14-11eb-8b01-9b5f6e1e23da.jpeg)
 
 ✨ Login
-[!photo](https://drive.google.com/file/d/17F1rBjDA9wWfXim5_5pG-miT5lULNEtg/view?usp=drivesdk)
+![WhatsApp Image 2020-12-10 at 17 40 14](https://user-images.githubusercontent.com/46896802/101765273-abf04600-3b13-11eb-813f-94aa77874c49.jpeg)

@@ -20,8 +20,8 @@ import Income from '../../Assets/icons/arrow-down.svg';
 import Expense from '../../Assets/icons/arrow-up.svg';
 
 const Transaction = (props) => {
-  const {data} = useSelector((state) => state.user);
-  const {dataAll} = useSelector((state) => state.history);
+  const {data} = useSelector((s) => s.user);
+  const {dataAll} = useSelector((s) => s.history);
 
   const handleGraph = (stats) => {
     let income = 0;
@@ -47,7 +47,7 @@ const Transaction = (props) => {
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <Image
               style={{borderRadius: 10, width: 52, height: 52, marginRight: 20}}
-              source={{uri: imageURI + item.photo}}
+              source={{uri: imageURI + data.photo}}
             />
             <View style={{justifyContent: 'space-between'}}>
               <Text>

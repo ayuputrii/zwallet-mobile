@@ -123,8 +123,8 @@ const History = (props) => {
               <Image
                 style={{
                   borderRadius: 10,
-                  width: 52,
-                  height: 52,
+                  width: 60,
+                  height: 60,
                   marginRight: 20,
                 }}
                 source={{uri: imageURI + data.photo}}
@@ -133,18 +133,18 @@ const History = (props) => {
               <Image
                 style={{
                   borderRadius: 10,
-                  width: 52,
-                  height: 52,
+                  width: 60,
+                  height: 60,
                   marginRight: 20,
                 }}
-                source={{uri: imageURI + data.photo}}
+                source={require('../../Assets/images/picture.png')}
               />
             )}
             <View style={{justifyContent: 'space-between'}}>
               <Text>
                 {item.receiver === data.name ? item.sender : item.receiver}
               </Text>
-              <Text>{item.note}</Text>
+              <Text>Transfer</Text>
             </View>
           </View>
           <Text

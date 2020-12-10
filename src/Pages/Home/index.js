@@ -219,8 +219,7 @@ const Home = (props) => {
                     <Text
                       style={{
                         fontFamily: 'Nunito-Regular',
-                      }}
-                      onPress={() => props.navigation.navigate('Amount')}>
+                      }}>
                       Transfer
                     </Text>
                   </Text>
@@ -306,16 +305,16 @@ const Home = (props) => {
             </View>
           ) : (
             typeof dataAll === 'object' &&
-            dataAll.map((item) => {
-              return (
-                <View style={{padding: 2, marginTop: 12}}>
-                  <Card
-                    style={{
-                      borderRadius: 10,
-                      fontFamily: 'Nunito-Regular',
-                      height: 92,
-                    }}>
-                    {data ? (
+            dataAll.map((item, index) => {
+              if (index < 5 && !item.name) {
+                return (
+                  <View key={index} style={{padding: 2, marginTop: 12}}>
+                    <Card
+                      style={{
+                        borderRadius: 10,
+                        fontFamily: 'Nunito-Regular',
+                        height: 92,
+                      }}>
                       <Image
                         style={{
                           marginTop: 15,
@@ -326,71 +325,59 @@ const Home = (props) => {
                         }}
                         source={{uri: imageURI + data.photo}}
                       />
-                    ) : (
-                      <Image
+                      <View
                         style={{
-                          padding: 10,
-                          width: 60,
-                          height: 60,
-                          marginLeft: 20,
-                          marginTop: 15,
-                        }}
-                        source={require('../../Assets/images/picture.png')}
-                      />
-                    )}
-                    <View
-                      style={{
-                        position: 'absolute',
-                      }}>
-                      <Text
+                          position: 'absolute',
+                        }}>
+                        <Text
+                          style={{
+                            marginLeft: 100,
+                            marginTop: 15,
+                            fontSize: 16,
+                            color: '#4D4B57',
+                            fontWeight: 'bold',
+                          }}>
+                          {item.receiver === data.name
+                            ? item.sender
+                            : item.receiver}
+                        </Text>
+                      </View>
+                      <View
                         style={{
+                          position: 'absolute',
+                          fontWeight: 'normal',
+                          marginTop: 50,
                           marginLeft: 100,
-                          marginTop: 15,
-                          fontSize: 16,
-                          color: '#4D4B57',
-                          fontWeight: 'bold',
                         }}>
-                        {item.receiver === data.name
-                          ? item.sender
-                          : item.receiver}
-                      </Text>
-                    </View>
-                    <View
-                      style={{
-                        position: 'absolute',
-                        fontWeight: 'normal',
-                        marginTop: 50,
-                        marginLeft: 100,
-                      }}>
-                      <Text
+                        <Text
+                          style={{
+                            fontFamily: 'Nunito-Regular',
+                            fontSize: 14,
+                            color: '#514F5B',
+                          }}>
+                          Transfer
+                        </Text>
+                      </View>
+                      <View
                         style={{
-                          fontFamily: 'Nunito-Regular',
-                          fontSize: 14,
-                          color: '#514F5B',
+                          position: 'absolute',
+                          right: 25,
+                          marginTop: 32,
                         }}>
-                        {item.receiver === data.name
-                          ? item.sender
-                          : item.receiver}
-                      </Text>
-                    </View>
-                    <View
-                      style={{
-                        position: 'absolute',
-                        right: 20,
-                      }}>
-                      <Text
-                        style={{
-                          marginTop: 36,
-                          color: '#1EC15F',
-                          fontWeight: 'bold',
-                        }}>
-                        {item.receiver === data.name ? '+' : '-'}
-                        {item.amount}
-                      </Text>
-                    </View>
-                  </Card>
-                </View>
-              );
+                        <Text
+                          style={
+                            item.receiver === data.name
+                              ? {color: 'green'}
+                              : {color: 'red'}
+                          }>
+                          {item.receiver === data.name ? '+' : '-'}
+                          {item.amount}
+                        </Text>
+                      </View>
+                    </Card>
+                  </View>
+                );
+              }
             })
           )}
         </View>

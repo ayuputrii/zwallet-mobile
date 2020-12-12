@@ -4,7 +4,7 @@
 
 ### Release:
 
-[Application Zwallet Webi Version Website](https://bit.ly/zwallett)
+### [Application Zwallet Webi Version Website](bit.ly/Zwallett)
 
 ### Description:
 

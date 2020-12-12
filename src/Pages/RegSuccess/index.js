@@ -15,7 +15,7 @@ import Success from '../../Assets/icons/success.svg';
 const RegSuccess = ({navigation}) => {
   return (
     <>
-      <StatusBar backgroundColor={style.background} barStyle="dark-content" />
+      <StatusBar backgroundColor={style.primary} barStyle="dark-content" />
       <SafeAreaView>
         <View>
           <ScrollView style={{height: '100%'}}>
@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
   containerTop: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: style.background,
     height: Dimensions.get('screen').width / 2,
   },
   logo: {

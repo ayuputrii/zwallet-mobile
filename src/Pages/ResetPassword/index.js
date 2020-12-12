@@ -116,7 +116,7 @@ const ResetPassword = (props) => {
 };
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FAFCFF',
+    backgroundColor: 'white',
   },
   zwallet: {
     textAlign: 'center',
@@ -124,9 +124,6 @@ const styles = StyleSheet.create({
     color: '#6379F4',
     fontWeight: 'bold',
     marginTop: 70,
-  },
-  body: {
-    display: 'flex',
   },
   bgwallet: {
     borderTopStartRadius: 25,

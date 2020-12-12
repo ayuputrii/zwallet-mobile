@@ -15,7 +15,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {formFilled} from '../../Redux/Action/Transfer';
 import NoteInput from '../../Components/inputBorderBottom';
 import style from '../../Helper';
-import {IconButton, Card} from 'react-native-paper';
+import {IconButton} from 'react-native-paper';
 import Edit from '../../Assets/icons/edit.svg';
 import EditActive from '../../Assets/icons/edit-active.svg';
 import {imageURI} from '../../utils';
@@ -28,22 +28,6 @@ const Amount = (props) => {
   const [noteActive, setNoteActive] = useState(false);
   const {userTransfer} = useSelector((s) => s.search);
   const {data} = useSelector((s) => s.user);
-
-  const splitPhone = (phone) => {
-    if (phone) {
-      const newPhone = phone.split('').map((item, index) => {
-        if (index === 2 || index === 6) {
-          return item + '-';
-        } else {
-          return item;
-        }
-      });
-
-      return newPhone;
-    } else {
-      return '';
-    }
-  };
 
   const onSubmit = () => {
     if (parseInt(amount) && parseInt(amount) <= data.balance) {
@@ -99,7 +83,7 @@ const Amount = (props) => {
                 </Text>
               </Text>
               <View style={styles.label}>
-                {data ? (
+                {userTransfer ? (
                   <Image
                     style={{
                       borderRadius: 10,
@@ -107,7 +91,7 @@ const Amount = (props) => {
                       height: 60,
                       marginRight: 15,
                     }}
-                    source={{uri: imageURI + data.photo}}
+                    source={{uri: imageURI + userTransfer.photo}}
                   />
                 ) : (
                   <Image
@@ -131,7 +115,7 @@ const Amount = (props) => {
                     {userTransfer.name}
                   </Text>
                   <Text style={{color: style.darkMed, fontSize: 14}}>
-                    +62 {splitPhone(userTransfer.phone)}
+                    {userTransfer ? `${userTransfer.phone}` : `0`}
                   </Text>
                 </View>
               </View>

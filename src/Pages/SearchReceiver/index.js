@@ -19,30 +19,13 @@ const SearchReceiver = (props) => {
   const [query, setQuery] = useState('');
   const dispatch = useDispatch();
   const {data} = useSelector((s) => s.search);
-  const {data: dataUser} = useSelector((s) => s.user);
   const {token} = useSelector((s) => s.auth);
 
   useEffect(() => {
     dispatch(search(token));
   }, []);
 
-  const splitPhone = (phone) => {
-    if (phone) {
-      const newPhone = phone.split('').map((item, index) => {
-        if (index === 2 || index === 6) {
-          return item + '-';
-        } else {
-          return item;
-        }
-      });
-
-      return newPhone;
-    } else {
-      return '';
-    }
-  };
-
-  const renderItem = ({item, index}) => {
+  const renderItem = ({item}) => {
     if (item.phone) {
       return (
         <View style={{padding: 2, marginTop: 10}}>
@@ -65,7 +48,7 @@ const SearchReceiver = (props) => {
                 marginLeft: 20,
                 marginTop: 15,
               }}
-              source={{uri: imageURI + dataUser.photo}}
+              source={{uri: imageURI + item.photo}}
             />
             <View
               style={{
@@ -95,7 +78,7 @@ const SearchReceiver = (props) => {
                   fontSize: 14,
                   color: '#514F5B',
                 }}>
-                +62 {splitPhone(item.phone)}
+                {item ? `${item.phone}` : `0`}
               </Text>
             </View>
           </Card>

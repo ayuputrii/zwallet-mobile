@@ -1,20 +1,31 @@
 import React from 'react';
-import {StyleSheet, ScrollView, View, StatusBar} from 'react-native';
-import {IconButton, Text, Card} from 'react-native-paper';
+import {StyleSheet, ScrollView, View, StatusBar, Modal} from 'react-native';
+import {IconButton, Text, Card, Button} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useDispatch, useSelector} from 'react-redux';
-import {topup} from '../../Redux/Action/Topup';
+import {
+  topup,
+  chargeTopup20k,
+  chargeTopup50k,
+  chargeTopup100k,
+} from '../../Redux/Action/Topup';
 import style from '../../Helper';
+
 const Topup = (props) => {
   const dispatch = useDispatch();
-  const dataUser = useSelector((s) => s.user.data);
-  const {data, loading} = useSelector((s) => s.topup);
+  const {data, token20k, token50k, token100k, loading} = useSelector(
+    (s) => s.topup,
+  );
   const {token} = useSelector((s) => s.auth);
+  const [modalVisible, setModalVisible] = React.useState(false);
 
   React.useEffect(() => {
     dispatch(topup(token));
   }, []);
 
+  const selectedItem = () => {
+    setModalVisible(true);
+  };
   return (
     <>
       <StatusBar backgroundColor={style.primary} />
@@ -71,11 +82,81 @@ const Topup = (props) => {
                       <IconButton
                         color="#6379F4"
                         icon="plus"
-                        // onPress={() => props.navigation.navigate('Home')}
+                        onPress={() => selectedItem()}
                       />
                     </Card>
                   </View>
                 </SafeAreaView>
+                <View style={styles.centeredView}>
+                  <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={() => {
+                      Alert.alert('Modal has been closed.');
+                    }}>
+                    <View style={styles.centeredView}>
+                      <View style={styles.modalView}>
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                          }}></View>
+                        <View style={styles.inputWrap}>
+                          <View style={styles.inputItem}>
+                            <View style={{padding: 7}}>
+                              <Button
+                                style={{
+                                  elevation: 10,
+                                  borderRadius: 12,
+                                }}
+                                mode="contained"
+                                onClick={() => window.snap.pay(token20k)}>
+                                Charge 20k
+                              </Button>
+                            </View>
+                            <View style={{padding: 7}}>
+                              <Button
+                                style={{
+                                  elevation: 10,
+                                  marginTop: 2,
+                                  borderRadius: 12,
+                                }}
+                                mode="contained"
+                                onClick={() => window.snap.pay(token50k)}>
+                                Charge 50k
+                              </Button>
+                            </View>
+                            <View style={{padding: 7}}>
+                              <Button
+                                style={{
+                                  elevation: 10,
+                                  marginTop: 2,
+                                  borderRadius: 12,
+                                }}
+                                onClick={() => window.snap.pay(token20k)}
+                                mode="contained"
+                                onClick={() => window.snap.pay(token100k)}>
+                                Charge 100k
+                              </Button>
+                            </View>
+                            <View style={{padding: 7}}>
+                              <Button
+                                style={{
+                                  elevation: 10,
+                                  marginTop: 2,
+                                  borderRadius: 12,
+                                }}
+                                mode="contained"
+                                onPress={() => setModalVisible(false)}>
+                                Close
+                              </Button>
+                            </View>
+                          </View>
+                        </View>
+                      </View>
+                    </View>
+                  </Modal>
+                </View>
                 <View
                   style={{
                     position: 'absolute',
@@ -150,7 +231,7 @@ const Topup = (props) => {
                         <View>
                           <View
                             style={{fontWeight: 'bold'}}
-                            // onPress={() => props.navigation.navigate('Home')}
+                            onPress={() => selectedItem()}
                           />
                           <Text
                             style={{
@@ -226,9 +307,25 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 18,
   },
-  btnSubmit: {
-    padding: 15,
+  inputWrap: {
+    padding: 17,
+  },
+  centeredView: {
+    flex: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalView: {
     backgroundColor: '#FAFCFF',
+    borderRadius: 18,
+    padding: 20,
+    alignItems: 'center',
+    shadowColor: '#000',
+    height: 280,
+    width: 240,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.85,
+    elevation: 8,
   },
 });
 export default Topup;

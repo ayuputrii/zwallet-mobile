@@ -1,25 +1,18 @@
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import {StyleSheet, ScrollView, View, TextInput} from 'react-native';
 import {Button, Text} from 'react-native-paper';
 import {regPin} from '../../Redux/Action/Register';
 import {useDispatch} from 'react-redux';
+import style from '../../Helper';
+import SmoothPin from 'react-native-smooth-pincode-input';
 
 const RegisterPin = (props) => {
-  const inputPin1 = React.useRef('');
-  const inputPin2 = React.useRef('');
-  const inputPin3 = React.useRef('');
-  const inputPin4 = React.useRef('');
-  const inputPin5 = React.useRef('');
-  const [pin1, setPin1] = React.useState('');
-  const [pin2, setPin2] = React.useState('');
-  const [pin3, setPin3] = React.useState('');
-  const [pin4, setPin4] = React.useState('');
-  const [pin5, setPin5] = React.useState('');
-  const [pin6, setPin6] = React.useState('');
+  const pinInput = useRef();
+  const [pin, setPin] = useState('');
+  const [isFull, setFull] = useState(false);
 
   const dispatch = useDispatch();
-  const pin = pin1 + pin2 + pin3 + pin4 + pin5 + pin6;
 
   const handlePin = () => {
     AsyncStorage.getItem('RegisterMail').then((res) => {
@@ -28,12 +21,7 @@ const RegisterPin = (props) => {
           email: res,
           pin: pin,
         }),
-        setPin1(''),
-        setPin2(''),
-        setPin3(''),
-        setPin4(''),
-        setPin5(''),
-        setPin6(''),
+        setPin(''),
       );
       props.navigation.navigate('RegSuccess');
     });
@@ -52,146 +40,47 @@ const RegisterPin = (props) => {
               purpose in Zwallet.
             </Text>
             <View style={{padding: 10, marginTop: 20, flexDirection: 'row'}}>
-              <TextInput
-                style={{
-                  height: 58,
-                  width: 47,
-                  fontSize: 25,
-                  marginLeft: 10,
-                  paddingLeft: 3,
-                  backgroundColor: '#fff',
-                  borderColor: 'rgba(58, 61, 66, 0.6)',
-                  borderWidth: 1,
+              <SmoothPin
+                ref={pinInput}
+                codeLength={6}
+                placeholder={
+                  <View
+                    style={{
+                      borderBottomWidth: 1,
+                      borderBottomColor: 'rgba(169, 169, 169, 0.6)',
+                      width: '60%',
+                      height: '80%',
+                    }}></View>
+                }
+                cellStyle={{
                   borderRadius: 10,
-                  color: '#6379F4',
-                }}
-                onSubmitEditing={() => inputPin1.current.focus()}
-                returnKeyType="next"
-                value={pin1}
-                onChangeText={(number) => setPin1(number)}
-                keyboardType="number-pad"
-                disabled={false}
-                fontFamily="Nunito-Regular"
-                textAlign="center"
-                maxLength={1}></TextInput>
-              <TextInput
-                style={{
-                  height: 58,
-                  width: 47,
-                  fontSize: 25,
-                  marginLeft: 8,
-                  paddingLeft: 3,
-                  backgroundColor: '#fff',
-                  borderColor: 'gray',
+                  borderColor: isFull
+                    ? style.primary
+                    : 'rgba(169, 169, 169, 0.6)',
                   borderWidth: 1,
-                  borderRadius: 10,
-                  color: '#6379F4',
+                  backgroundColor: '#FFFFFF',
                 }}
-                ref={inputPin1}
-                onSubmitEditing={() => inputPin2.current.focus()}
-                returnKeyType="next"
-                value={pin2}
-                onChangeText={(number) => setPin2(number)}
-                keyboardType="number-pad"
-                disabled={false}
-                fontFamily="Nunito-Regular"
-                textAlign="center"
-                maxLength={1}></TextInput>
-              <TextInput
-                style={{
-                  height: 58,
-                  width: 47,
-                  fontSize: 25,
-                  marginLeft: 8,
-                  paddingLeft: 3,
-                  backgroundColor: '#fff',
-                  borderColor: 'rgba(58, 61, 66, 0.6)',
-                  borderWidth: 1,
-                  borderRadius: 10,
-                  color: '#6379F4',
+                cellStyleFocused={{
+                  borderColor: style.primary,
                 }}
-                ref={inputPin2}
-                onSubmitEditing={() => inputPin3.current.focus()}
-                returnKeyType="next"
-                value={pin3}
-                onChangeText={(number) => setPin3(number)}
-                keyboardType="number-pad"
-                disabled={false}
-                fontFamily="Nunito-Regular"
-                textAlign="center"
-                maxLength={1}></TextInput>
-              <TextInput
-                style={{
-                  height: 58,
-                  width: 47,
-                  fontSize: 25,
-                  marginLeft: 8,
-                  paddingLeft: 3,
-                  backgroundColor: '#fff',
-                  borderColor: 'rgba(58, 61, 66, 0.6)',
-                  borderWidth: 1,
-                  borderRadius: 10,
-                  color: '#6379F4',
+                textStyle={{
+                  color: style.dark,
+                  fontSize: 24,
+                  fontWeight: 'bold',
                 }}
-                ref={inputPin3}
-                onSubmitEditing={() => inputPin4.current.focus()}
-                returnKeyType="next"
-                value={pin4}
-                onChangeText={(number) => setPin4(number)}
-                keyboardType="number-pad"
-                disabled={false}
-                fontFamily="Nunito-Regular"
-                textAlign="center"
-                maxLength={1}></TextInput>
-              <TextInput
-                style={{
-                  height: 58,
-                  width: 47,
-                  fontSize: 25,
-                  marginLeft: 8,
-                  paddingLeft: 3,
-                  backgroundColor: '#fff',
-                  borderColor: 'rgba(58, 61, 66, 0.6)',
-                  borderWidth: 1,
-                  borderRadius: 10,
-                  color: '#6379F4',
+                cellSpacing={4}
+                cellSize={52}
+                value={pin}
+                onTextChange={(pin) => {
+                  setPin(pin);
+                  pin.length < 6 ? setFull(false) : setFull(true);
                 }}
-                ref={inputPin4}
-                onSubmitEditing={() => inputPin5.current.focus()}
-                returnKeyType="next"
-                value={pin5}
-                onChangeText={(number) => setPin5(number)}
-                keyboardType="number-pad"
-                disabled={false}
-                fontFamily="Nunito-Regular"
-                textAlign="center"
-                maxLength={1}></TextInput>
-              <TextInput
-                style={{
-                  height: 58,
-                  width: 47,
-                  fontSize: 25,
-                  marginLeft: 8,
-                  paddingLeft: 3,
-                  backgroundColor: '#fff',
-                  borderColor: 'rgba(58, 61, 66, 0.6)',
-                  borderWidth: 1,
-                  borderRadius: 10,
-                  color: '#6379F4',
-                }}
-                ref={inputPin5}
-                returnKeyType="next"
-                value={pin6}
-                onChangeText={(number) => setPin6(number)}
-                onSubmitEditing={() => handlePin()}
-                keyboardType="number-pad"
-                disabled={false}
-                fontFamily="Nunito-Regular"
-                textAlign="center"
-                maxLength={1}></TextInput>
+                onBackspace={() => setFull(false)}
+              />
             </View>
           </View>
         </View>
+        <View></View>
       </ScrollView>
       <View style={styles.container}>
         <View style={{padding: 25, backgroundColor: '#fff'}}>

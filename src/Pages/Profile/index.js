@@ -208,7 +208,7 @@ const Profile = (props) => {
                   </TouchableOpacity>
                 )}
                 <Text style={{color: style.darkMed, fontSize: 16}}>
-                  +62 {splitPhone(data.phone)}
+                  + {splitPhone(data.phone)}
                 </Text>
               </View>
               <View>
@@ -251,7 +251,7 @@ const Profile = (props) => {
                   </View>
                 </View>
                 <View
-                  onPress={() => navigation.navigate('Pin')}
+                  onPress={() => navigation.navigate('ChangePin')}
                   style={styles.field}>
                   <Text
                     style={{

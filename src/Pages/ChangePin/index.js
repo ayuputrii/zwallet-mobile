@@ -12,7 +12,8 @@ import {IconButton} from 'react-native-paper';
 import {RectButton} from 'react-native-gesture-handler';
 import {useSelector, useDispatch} from 'react-redux';
 import {checkPin, editUser} from '../../Redux/Action/Users';
-import style from '../../Helper';import SmoothPin from 'react-native-smooth-pincode-input';
+import style from '../../Helper';
+import SmoothPin from 'react-native-smooth-pincode-input';
 
 const ChangePin = (props) => {
   const pinInput = useRef();
@@ -22,9 +23,7 @@ const ChangePin = (props) => {
   const [isFullNew, setFullNew] = useState(false);
   const dispatch = useDispatch();
   const {token} = useSelector((s) => s.auth);
-  const {pinCheck, checkedPin, isEditSuccess} = useSelector(
-    (s) => s.user,
-  );
+  const {pinCheck, checkedPin, isEditSuccess} = useSelector((s) => s.user);
 
   const onSubmit = () => {
     if (isFull) {
@@ -136,8 +135,8 @@ const ChangePin = (props) => {
                     fontSize: 24,
                     fontWeight: 'bold',
                   }}
-                  cellSpacing={10}
-                  cellSize={55}
+                  cellSpacing={4}
+                  cellSize={52}
                   value={newPin}
                   onTextChange={(pin) => {
                     setNewPin(pin);
@@ -249,8 +248,8 @@ const ChangePin = (props) => {
                     fontSize: 24,
                     fontWeight: 'bold',
                   }}
-                  cellSpacing={10}
-                  cellSize={55}
+                  cellSpacing={4}
+                  cellSize={52}
                   value={pin}
                   onTextChange={(pin) => {
                     setPin(pin);

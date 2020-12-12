@@ -89,10 +89,11 @@ const Confirmation = (props) => {
                 {userTransfer ? (
                   <Image
                     style={{
+                      marginTop: 15,
                       borderRadius: 10,
-                      width: 52,
-                      height: 52,
-                      marginRight: 15,
+                      width: 60,
+                      height: 60,
+                      marginLeft: 20,
                     }}
                     source={{uri: imageURI + userTransfer.photo}}
                   />
@@ -199,7 +200,7 @@ const Confirmation = (props) => {
                       fontWeight: 'bold',
                       color: '#514F5B',
                     }}>
-                    Rp{dataTransfer.amount}
+                    {dataTransfer.amount}
                   </Text>
                 </View>
               </Card>

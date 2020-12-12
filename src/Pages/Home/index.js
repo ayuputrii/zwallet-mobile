@@ -3,19 +3,34 @@ import {StyleSheet, ScrollView, View, Image, StatusBar} from 'react-native';
 import {IconButton, Text, Card, Paragraph} from 'react-native-paper';
 import {useDispatch, useSelector} from 'react-redux';
 import {getHistory} from '../../Redux/Action/History';
-import {userLogout} from '../../Redux/Action/Users';
-import {logout} from '../../Redux/Action/Login';
-import {imageURI} from '../../utils';
+import {imageURI, URI} from '../../utils';
 import style from '../../Helper';
+import io from 'socket.io-client';
 
 const Home = (props) => {
   const dispatch = useDispatch();
   const {token} = useSelector((s) => s.auth);
   const {data, loading} = useSelector((s) => s.user);
   const {dataAll} = useSelector((s) => s.history);
+  const [balance, setBalance] = React.useState('');
+
+  const socket = io(URI);
+  React.useEffect(
+    () => {
+      dispatch(getHistory(token));
+    },
+    [],
+
+    socket.emit('initial-user', data.id),
+    socket.on('get-data', (data) => {
+      setBalance(data);
+    }),
+  );
 
   React.useEffect(() => {
-    dispatch(getHistory(token));
+    return () => {
+      socket.off('get-data');
+    };
   }, []);
 
   const splitPhone = (phone) => {
@@ -32,11 +47,6 @@ const Home = (props) => {
     } else {
       return '';
     }
-  };
-
-  const onLogout = () => {
-    dispatch(logout());
-    dispatch(userLogout());
   };
 
   return (
@@ -164,26 +174,15 @@ const Home = (props) => {
                       </Text>
                     </Text>
                   )}
-                  {data ? (
-                    <Paragraph
-                      style={{
-                        left: 10,
-                        marginTop: 10,
-                        color: '#D0D0D0',
-                        fontFamily: 'Nunito-Regular',
-                      }}>
-                      +62 {splitPhone(data.phone)}
-                    </Paragraph>
-                  ) : (
-                    <Paragraph
-                      style={{
-                        left: 10,
-                        color: '#D0D0D0',
-                        fontFamily: 'Nunito-Regular',
-                      }}>
-                      Phone Not Detected!
-                    </Paragraph>
-                  )}
+                  <Paragraph
+                    style={{
+                      left: 10,
+                      marginTop: 10,
+                      color: '#D0D0D0',
+                      fontFamily: 'Nunito-Regular',
+                    }}>
+                    + {splitPhone(data.phone)}
+                  </Paragraph>
                 </Card.Content>
               </Card>
               <View style={{flex: 1, flexDirection: 'row'}}>
@@ -385,22 +384,6 @@ const Home = (props) => {
     </>
   );
 };
-// const Home = (props) => {
-//   return (
-//     <Drawer.Navigator
-//       drawerContentOptions={{
-//         activeBackgroundColor: '#6379F4',
-//         inactiveBackgroundColor: '#fff',
-//         activeTintColor: '#fff',
-//       }}
-//       drawerContent={(props) => <CustomDrawer {...props} />}
-//       drawerType="back"
-//       initialRouteName="Home"
-//       overlayColor="#ffffff22">
-//       <Drawer.Screen name="Home" component={Welcome} />
-//     </Drawer.Navigator>
-//   );
-// };
 
 export default Home;
 

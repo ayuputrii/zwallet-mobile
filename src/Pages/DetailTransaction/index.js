@@ -103,7 +103,7 @@ const Transaction = (props) => {
                 <IconButton
                   color="#4D4B57"
                   icon="arrow-left"
-                  onPress={() => props.navigation.navigate('Profile')}
+                  onPress={() => props.navigation.navigate('Home')}
                 />
               </View>
               <Text

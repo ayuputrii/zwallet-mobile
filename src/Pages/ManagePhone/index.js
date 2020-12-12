@@ -109,7 +109,7 @@ const ManagePhone = (props) => {
                         fontStyle: 'normal',
                         fontWeight: 'bold',
                       }}>
-                      +62 {splitPhone(data.phone)}
+                      + {splitPhone(data.phone)}
                     </Text>
                   </Text>
                 </Card.Content>

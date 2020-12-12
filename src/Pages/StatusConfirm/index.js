@@ -18,27 +18,9 @@ import moment from 'moment';
 import {RectButton} from 'react-native-gesture-handler';
 
 const StatusConfirm = ({navigation}) => {
-  const {userTransfer} = useSelector((state) => state.search);
-  const {data} = useSelector((state) => state.user);
-  const {dataTransfer, isSuccess, isFailed} = useSelector(
-    (state) => state.transfer,
-  );
-
-  const splitPhone = (phone) => {
-    if (phone) {
-      const newPhone = phone.split('').map((item, index) => {
-        if (index === 2 || index === 6) {
-          return item + '-';
-        } else {
-          return item;
-        }
-      });
-
-      return newPhone;
-    } else {
-      return '';
-    }
-  };
+  const {userTransfer} = useSelector((s) => s.search);
+  const {data} = useSelector((s) => s.user);
+  const {dataTransfer, isSuccess, isFailed} = useSelector((s) => s.transfer);
 
   return (
     <>
@@ -165,7 +147,7 @@ const StatusConfirm = ({navigation}) => {
                         {data.name}
                       </Text>
                       <Text style={{color: style.darkMed, fontSize: 14}}>
-                        +62 {splitPhone(data.phone)}
+                        {data ? `${data.phone}` : '-'}
                       </Text>
                     </View>
                   </View>
@@ -186,8 +168,8 @@ const StatusConfirm = ({navigation}) => {
                     <Image
                       style={{
                         borderRadius: 10,
-                        width: 52,
-                        height: 52,
+                        width: 60,
+                        height: 60,
                         marginRight: 15,
                       }}
                       source={{uri: imageURI + userTransfer.photo}}
@@ -203,7 +185,7 @@ const StatusConfirm = ({navigation}) => {
                         {userTransfer.name}
                       </Text>
                       <Text style={{color: style.darkMed, fontSize: 14}}>
-                        +62 {splitPhone(userTransfer.phone)}
+                        {userTransfer ? `${userTransfer.phone}` : `0`}
                       </Text>
                     </View>
                   </View>
@@ -219,7 +201,7 @@ const StatusConfirm = ({navigation}) => {
                 </RectButton>
               ) : isFailed ? (
                 <RectButton
-                  onPress={() => navigation.replace('Search')}
+                  onPress={() => navigation.replace('SearchReceiver')}
                   style={styles.buttonPrimary}>
                   <Text style={{color: style.white, fontSize: 18}}>
                     Try Again

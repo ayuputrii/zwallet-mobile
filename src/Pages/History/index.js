@@ -27,9 +27,9 @@ moment.locale('id');
 
 const History = (props) => {
   const dispatch = useDispatch();
-  const {data} = useSelector((state) => state.user);
-  const {token} = useSelector((state) => state.auth);
-  const {dataAll, dataFilter} = useSelector((state) => state.history);
+  const {data} = useSelector((s) => s.user);
+  const {token} = useSelector((s) => s.auth);
+  const {dataAll, dataFilter} = useSelector((s) => s.history);
   const [expense, setExpense] = useState(false);
   const [income, setIncome] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
@@ -123,8 +123,8 @@ const History = (props) => {
               <Image
                 style={{
                   borderRadius: 10,
-                  width: 60,
-                  height: 60,
+                  width: 52,
+                  height: 52,
                   marginRight: 20,
                 }}
                 source={{uri: imageURI + data.photo}}
@@ -133,11 +133,11 @@ const History = (props) => {
               <Image
                 style={{
                   borderRadius: 10,
-                  width: 60,
-                  height: 60,
+                  width: 52,
+                  height: 52,
                   marginRight: 20,
                 }}
-                source={require('../../Assets/images/picture.png')}
+                source={{uri: imageURI + data.photo}}
               />
             )}
             <View style={{justifyContent: 'space-between'}}>

@@ -152,8 +152,8 @@ const PinConfirmation = (props) => {
                   fontSize: 24,
                   fontWeight: 'bold',
                 }}
-                cellSpacing={10}
-                cellSize={55}
+                cellSpacing={4}
+                cellSize={52}
                 value={pin}
                 onTextChange={(pin) => {
                   setPin(pin);

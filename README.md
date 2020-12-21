@@ -1,7 +1,5 @@
 <h1 align="center">
-<a href="#">
-  Zwallet Webi
-</a>
+Zwallet Webi
 </h1>
 
 <p align="center">
@@ -12,7 +10,7 @@ Let's just go to <strong>Zwallet Webi</strong>!
 
 ### Release:
 
-[Application Zwallet Webi Version Website](https://bit.ly/Zwalletbi)
+[Application Zwallet Webi Version Mobile](https://bit.ly/Zwalletbi)
 
 ### Description:
 
@@ -31,20 +29,21 @@ The Zwallet Webi application is used as an online payment between one user and o
 ### Database:
 
 ✨ [MySQL](https://www.mysql.com/)
+- [Using to Backend this program](https://github.com/ayuputrii/zmobile.git)
 
-### Screenshoot Application
+### Screenshoot Application:
 
 ✨ Splach Screen
 
-<img src="https://user-images.githubusercontent.com/46896802/101994784-afdcbd80-3cf7-11eb-8b5a-360eb7824c60.jpg" width="200">
+<img src="https://user-images.githubusercontent.com/46896802/101994784-afdcbd80-3cf7-11eb-8b5a-360eb7824c60.jpg" width="200" height="400">
 
 ✨ SignIn
 
-<img src="https://user-images.githubusercontent.com/46896802/101994798-ea465a80-3cf7-11eb-8535-0a4499a97945.jpg" width="200">
+<img src="https://user-images.githubusercontent.com/46896802/101994798-ea465a80-3cf7-11eb-8535-0a4499a97945.jpg" width="200" height="400">
 
 ✨ SignUp
 
-<img src="https://user-images.githubusercontent.com/46896802/101995792-452f8000-3cff-11eb-8350-83813156986a.jpg" width="200">
+<img src="https://user-images.githubusercontent.com/46896802/101995792-452f8000-3cff-11eb-8350-83813156986a.jpg" width="200" height="400">
 
 ✨ SignUp Pin
 
@@ -86,7 +85,14 @@ The Zwallet Webi application is used as an online payment between one user and o
 
 <img src="https://user-images.githubusercontent.com/46896802/101994860-6e98dd80-3cf8-11eb-922a-2085d9128837.jpg" width="200">
 
-### How To Install:
+### Install dependencies using npm or yarn
 
-1. yarn install
-2. yarn start & yarn android or npx react-native run-android
+```
+yarn OR npm i
+```
+
+### Running App
+
+```
+yarn android and yarn start or npx react-native run-android
+```
